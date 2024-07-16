@@ -1,0 +1,29 @@
+<h1>Flight Search</h1>
+
+<%= form_tag flights_path, method: :get do %>
+  <%= select_tag :departure_airport_id, options_from_collection_for_select(@airports, :id, :code, params[:departure_airport_id]), prompt: 'Select Departure Airport' %>
+  <%= select_tag :arrival_airport_id, options_from_collection_for_select(@airports, :id, :code, params[:arrival_airport_id]), prompt: 'Select Arrival Airport' %>
+  <%= select_tag :flight_date, options_for_select(@available_dates.map { |date| [date.strftime("%B %d, %Y"), date] }, params[:flight_date]), prompt: 'Select Flight Date' %>
+  <%= select_tag :num_passengers, options_for_select([1, 2, 3, 4], params[:num_passengers]), prompt: 'Select Number of Passengers' %>
+  <%= submit_tag 'Search Flights' %>
+<% end %>
+
+<% if @flights.any? %>
+  <h2>Search Results</h2>
+  <%= form_tag bookings_new_path, method: :get do %>
+    <%= hidden_field_tag :num_passengers, params[:num_passengers] %>
+    <ul>
+      <% @flights.each do |flight| %>
+        <li>
+          <%= radio_button_tag :flight_id, flight.id %>
+          <%= flight.departure_airport.code %> to <%= flight.arrival_airport.code %> -
+          <%= flight.start_datetime %> -
+          Duration: <%= flight.duration %> minutes
+        </li>
+      <% end %>
+    </ul>
+    <%= submit_tag 'Select Flight' %>
+  <% end %>
+<% else %>
+  <p>No flights found for the selected criteria.</p>
+<% end %>

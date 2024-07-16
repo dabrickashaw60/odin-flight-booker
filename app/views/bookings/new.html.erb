@@ -1,0 +1,7 @@
+<h1>Booking Details</h1>
+
+<p>Flight: <%= @flight.departure_airport.code %> to <%= @flight.arrival_airport.code %></p>
+<p>Date: <%= @flight.start_datetime %></p>
+<p>Number of Passengers: <%= @num_passengers %></p>
+
+<%= link_to 'Back to Flights', flights_path %>
