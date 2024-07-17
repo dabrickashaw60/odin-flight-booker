@@ -1,3 +1,4 @@
+<!-- app/views/flights/index.html.erb -->
 <h1>Flight Search</h1>
 
 <%= form_tag flights_path, method: :get do %>
@@ -27,3 +28,5 @@
 <% else %>
   <p>No flights found for the selected criteria.</p>
 <% end %>
+
+<%= link_to 'View All Flights', all_flights_flights_path %>

@@ -1,0 +1,25 @@
+<!-- app/views/flights/all_flights.html.erb -->
+<h1>All Flights</h1>
+        <%= link_to "home", root_path %>
+<table>
+  <thead>
+    <tr>
+      <th>Flight ID</th>
+      <th>Departure Airport</th>
+      <th>Arrival Airport</th>
+      <th>Start Datetime</th>
+      <th>Duration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @flights.each do |flight| %>
+      <tr>
+        <td><%= flight.id %></td>
+        <td><%= flight.departure_airport.code %></td>
+        <td><%= flight.arrival_airport.code %></td>
+        <td><%= flight.start_datetime %></td>
+        <td><%= flight.duration %> minutes</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,7 +1,26 @@
-<h1>Booking Details</h1>
+<h1>Book Flight</h1>
 
 <p>Flight: <%= @flight.departure_airport.code %> to <%= @flight.arrival_airport.code %></p>
 <p>Date: <%= @flight.start_datetime %></p>
-<p>Number of Passengers: <%= @num_passengers %></p>
 
-<%= link_to 'Back to Flights', flights_path %>
+<%= form_with model: @booking, url: bookings_path do |f| %>
+  <%= f.hidden_field :flight_id, value: @flight.id %>
+  
+  <% @booking.passengers.each_with_index do |passenger, index| %>
+    <div class="passenger-fields">
+      <h2>Passenger <%= index + 1 %></h2>
+      <%= f.fields_for :passengers, passenger do |pf| %>
+        <p>
+          <%= pf.label :name %><br>
+          <%= pf.text_field :name %>
+        </p>
+        <p>
+          <%= pf.label :email %><br>
+          <%= pf.text_field :email %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+  
+  <%= f.submit "Book Flight" %>
+<% end %>
