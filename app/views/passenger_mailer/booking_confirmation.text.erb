@@ -1,0 +1,17 @@
+<!-- app/views/passenger_mailer/booking_confirmation.text.erb -->
+Booking Confirmation
+
+Dear <%= @passenger.name %>,
+
+Thank you for booking a flight with us. Here are your flight details:
+
+Flight ID: <%= @flight.id %>
+Departure Airport: <%= @flight.departure_airport.code %>
+Arrival Airport: <%= @flight.arrival_airport.code %>
+Departure Time: <%= @flight.start_datetime %>
+Duration: <%= @flight.duration %> minutes
+
+We look forward to seeing you on board!
+
+Best regards,
+Your Airline Team

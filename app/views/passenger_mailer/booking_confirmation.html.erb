@@ -1,0 +1,13 @@
+<!-- app/views/passenger_mailer/booking_confirmation.html.erb -->
+<h1>Booking Confirmation</h1>
+<p>Dear <%= @passenger.name %>,</p>
+<p>Thank you for booking a flight with us. Here are your flight details:</p>
+<ul>
+  <li>Flight ID: <%= @flight.id %></li>
+  <li>Departure Airport: <%= @flight.departure_airport.code %></li>
+  <li>Arrival Airport: <%= @flight.arrival_airport.code %></li>
+  <li>Departure Time: <%= @flight.start_datetime %></li>
+  <li>Duration: <%= @flight.duration %> minutes</li>
+</ul>
+<p>We look forward to seeing you on board!</p>
+<p>Best regards,<br>Your Airline Team</p>
